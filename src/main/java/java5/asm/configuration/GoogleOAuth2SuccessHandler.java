@@ -25,8 +25,8 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     @Autowired
     RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    private PasswordEncoder bCryptPasswordEncoder;
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
