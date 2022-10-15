@@ -7,7 +7,7 @@
         <c:forEach items="${products}" var="product">
             <div class="col">
                 <div class="card h-100">
-                    <img src="${pageContext.request.contextPath}/src/main/resources/static/productImages/${product.imageName}" class="card-img-top" alt="...">
+                    <img src="../../../resources/static/productImages/index.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
                         <h6 class="card-title">${product.price}</h6>
