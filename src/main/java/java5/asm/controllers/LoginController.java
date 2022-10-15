@@ -49,6 +49,9 @@ public class LoginController {
         return "register";
     } //page register
 
+
+
+
     @PostMapping("/register")
     public String registerPost(@ModelAttribute User userModel, HttpServletRequest request) throws ServletException {
         //chuyen password tu form dki thanh dang ma hoa
