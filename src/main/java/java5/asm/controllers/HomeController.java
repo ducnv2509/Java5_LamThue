@@ -7,7 +7,7 @@ import java5.asm.service.ProductService;
 import java5.asm.service.RoleService;
 import java5.asm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    private PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     UserService userService;
@@ -50,4 +50,12 @@ public class HomeController {
         model.addAttribute("product", productService.getProductById(id).get());
         return "ViewProduct";
     } //view product Details
+
+    @GetMapping("/shop/category/{id}")
+    public String shopByCat(@PathVariable int id, Model model){
+        model.addAttribute("cartCount", GlobalData.cart.size());
+        model.addAttribute("categories", categoryService.getAllCategory());
+        model.addAttribute("products", productService.getAllProductByCategoryId(id));
+        return "shop";
+    } //view Products By Category
 }

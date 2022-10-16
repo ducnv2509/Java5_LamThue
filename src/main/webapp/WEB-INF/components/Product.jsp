@@ -13,7 +13,9 @@
                         <h6 class="card-title">${product.price}</h6>
                         <p class="card-text">${product.description}}</p>
                     </div>
-                    <button><a href="/shop/viewproduct/${product.id}"> view detail</a></button>
+                    <div class = "d-flex justify-content-center">
+                        <a class="btn btn-primary mb-3" style="width: 80%" href="/shop/viewproduct/${product.id}" role="button">View Product</a>
+                    </div>
                 </div>
             </div>
         </c:forEach>

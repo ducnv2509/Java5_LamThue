@@ -46,5 +46,9 @@ public class User {
         this.password = user.getPassword();
         this.roles = user.getRoles();
     }
+//    public void ádadasd (){
+//        User dfndn = new User();
+//        int a= dfndn.getRoles().get(0)
+//    }
 
 }//create table mapping trong db

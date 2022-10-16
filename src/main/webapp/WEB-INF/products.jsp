@@ -25,8 +25,8 @@
         <c:forEach items="${products}" var="product" varStatus="loop">
             <tr>
                 <th scope="row">${loop.index + 1}</th>
-                <td th:text="">${product.name}</td>
-                <td th:text="${product.category.name}">${product.category.name}</td>
+                <td >${product.name}</td>
+                <td>${product.category.name}</td>
                 <td><img height="100px" width="100px"  src="/productImages/${product.imageName}"></td>
 
                 <td><a href="/admin/products/delete/${product.id}" class="btn btn-danger">Delete</a></td>

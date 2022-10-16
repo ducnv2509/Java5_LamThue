@@ -12,7 +12,7 @@
     <form:form action="/admin/products/add" method="post" modelAttribute="productDTO" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-5">
-                <input type="hidden" name="id" th:field="*{id}">
+                <input type="hidden" name="id" value="${productDTO.id}">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" required name="name" id="name"
@@ -23,7 +23,7 @@
                     <label for="categoryId">Select Category</label>
                     <select class="form-control" id="categoryId" name="categoryId">
                         <c:forEach items="${categories}" var="cate">
-                            <option value="${cate.id}">
+                            <option value="${cate.id}"  ${cate.id == productDTO.categoryId ? 'selected="selected"' : ''}>
                                     ${cate.name}
                             </option>
 
