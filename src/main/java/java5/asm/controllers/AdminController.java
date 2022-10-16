@@ -55,13 +55,13 @@ public class AdminController {
 
     @GetMapping("/admin/products/add")
     public String getProAdd(Model model) {
-        model.addAttribute("productDTO", new Product());
+        model.addAttribute("productDTO", new ProductDTO());
         model.addAttribute("categories", categoryService.getAllCategory());
         return "addProduct";
     }// form add new product
 
     @PostMapping("/admin/products/add")
-    public String postProAdd(@ModelAttribute("productDTO") Product productDTO,
+    public String postProAdd(@ModelAttribute("productDTO") ProductDTO productDTO,
                              @RequestParam("productImage") MultipartFile fileProductImage,
                              @RequestParam("imgName") String imgName, HttpServletRequest request) throws IOException, ServletException {
         //convert dto > entity
@@ -76,8 +76,8 @@ public class AdminController {
         Product product = new Product();
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
-//        System.out.println("Test: " + categoryService.getCategoryById(productDTO.getCategoryId()));
-        product.setCategory(categoryService.getCategoryById(productDTO.getCategory().getId()).get());
+        System.out.println("Test: " + categoryService.getCategoryById(productDTO.getCategoryId()));
+//        product.setCategory(categoryService.getCategoryById(productDTO.getCategoryId()));
         product.setPrice(productDTO.getPrice());
         product.setWeight(productDTO.getWeight());
         product.setDescription(productDTO.getDescription());
