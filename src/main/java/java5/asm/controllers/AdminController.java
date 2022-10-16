@@ -76,8 +76,9 @@ public class AdminController {
         Product product = new Product();
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
-        System.out.println("Test: " + categoryService.getCategoryById(productDTO.getCategoryId()));
-//        product.setCategory(categoryService.getCategoryById(productDTO.getCategoryId()));
+        System.out.println(productDTO);
+//        product.setCategory(categoryService.getCategoryById(productDTO.getCategoryId().);
+        product.setCategory(categoryService.getCategoryById(productDTO.getCategoryId()).get());
         product.setPrice(productDTO.getPrice());
         product.setWeight(productDTO.getWeight());
         product.setDescription(productDTO.getDescription());

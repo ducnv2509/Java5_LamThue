@@ -33,6 +33,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link " href="/cart" tabindex="-1" aria-disabled="true">Cart<span class="badge bg-secondary" style="margin-left: 3px">4</span></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="login.html" tabindex="-1" aria-disabled="true">Login</a>
                 </li>
             </ul>

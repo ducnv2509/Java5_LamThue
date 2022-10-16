@@ -20,12 +20,8 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="category">Select Category</label>
-                    <select class="form-control" id="category" name="category">
-                            <%--                        <option th:each="category :${categories}"--%>
-                            <%--                                th:value="${category.id}"--%>
-                            <%--                                th:text="${category.name}"--%>
-                            <%--                        >--%>
+                    <label for="categoryId">Select Category</label>
+                    <select class="form-control" id="categoryId" name="categoryId">
                         <c:forEach items="${categories}" var="cate">
                             <option value="${cate.id}">
                                     ${cate.name}
