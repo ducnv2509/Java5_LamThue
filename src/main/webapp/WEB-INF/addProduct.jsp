@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" required name="name" id="name"
-                           placeholder="Enter name">
+                           placeholder="Enter name" value = "${productDTO.name}">
 
                 </div>
                 <div class="form-group">
@@ -33,17 +33,17 @@
                 <div class="form-group">
                     <label for="price">Price</label>
                     <input type="number" class="form-control" required name="price" id="price"
-                           placeholder="Price">
+                           placeholder="Price" value = "${productDTO.price}">
                 </div>
                 <div class="form-group">
                     <label for="weight">Weight in grams</label>
                     <input type="number" class="form-control" required name="weight" id="weight"
-                           placeholder="Weight">
+                           placeholder="Weight" value = "${productDTO.weight}">
                 </div>
                 <div class="form-group">
                     <label for="description">Product Description</label>
                     <textarea class="form-control" rows="5"  name="description"
-                              id="description"></textarea>
+                              id="description">"${productDTO.description}"</textarea>
                 </div>
             </div>
             <div class="col-sm-5">
@@ -57,7 +57,7 @@
                     <img id="imgPreview" height="100px" width="100px"
                          src="'/productImages/' + ${productDTO.imageName}" style="margin-top: 20px" alt=" ">
                 </div>
-                <input type="hidden" name="imgName" value="${productDTO.imageName}">
+                <input type="hidden" name="imgName"  value = "${productDTO.imageName}"/>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
 
