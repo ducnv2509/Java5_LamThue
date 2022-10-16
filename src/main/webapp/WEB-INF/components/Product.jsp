@@ -7,11 +7,14 @@
         <c:forEach items="${products}" var="product">
             <div class="col">
                 <div class="card h-100">
-                    <img src="${pageContext.request.contextPath}/src/main/resources/static/productImages/${product.imageName}" class="card-img-top" alt="...">
+                    <img src="/productImages/${product.imageName}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
                         <h6 class="card-title">${product.price}</h6>
                         <p class="card-text">${product.description}}</p>
+                    </div>
+                    <div class = "d-flex justify-content-center">
+                        <a class="btn btn-primary mb-3" style="width: 80%" href="/shop/viewproduct/${product.id}" role="button">View Product</a>
                     </div>
                 </div>
             </div>
