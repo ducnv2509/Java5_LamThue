@@ -43,22 +43,22 @@
                 <div class="form-group">
                     <label for="description">Product Description</label>
                     <textarea class="form-control" rows="5"  name="description"
-                              id="description">"${productDTO.description}"</textarea>
+                              id="description">${productDTO.description}</textarea>
                 </div>
             </div>
             <div class="col-sm-5">
                 <p>Product Image</p>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="productImage"
+                    <input type="file" class="form-control" name="productImage"
                            accept="image/jpeg, image/png, image/jpg" id="productImage"/>
                     <label class="custom-file-label" for="productImage">Choose file</label>
                 </div>
                 <div class="form-group">
                     <img id="imgPreview" height="100px" width="100px"
-                         src="'/productImages/' + ${productDTO.imageName}" style="margin-top: 20px" alt=" ">
+                         src="/productImages/${productDTO.imageName}" style="margin-top: 20px" alt=" ">
                 </div>
                 <input type="hidden" name="imgName"  value = "${productDTO.imageName}"/>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </div>
 
         </div>
