@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
@@ -28,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -57,13 +55,13 @@ public class AdminController {
 
     @GetMapping("/admin/products/add")
     public String getProAdd(Model model) {
-        model.addAttribute("productDTO", new ProductDTO());
+        model.addAttribute("productDTO", new Product());
         model.addAttribute("categories", categoryService.getAllCategory());
         return "addProduct";
     }// form add new product
 
     @PostMapping("/admin/products/add")
-    public String postProAdd(@ModelAttribute("productDTO") ProductDTO productDTO,
+    public String postProAdd(@ModelAttribute("productDTO") Product productDTO,
                              @RequestParam("productImage") MultipartFile fileProductImage,
                              @RequestParam("imgName") String imgName, HttpServletRequest request) throws IOException, ServletException {
         //convert dto > entity
@@ -78,8 +76,8 @@ public class AdminController {
         Product product = new Product();
         product.setId(productDTO.getId());
         product.setName(productDTO.getName());
-        System.out.println("Test: " + categoryService.getCategoryById(productDTO.getCategoryId()));
-//        product.setCategory(categoryService.getCategoryById(productDTO.getCategoryId()));
+//        System.out.println("Test: " + categoryService.getCategoryById(productDTO.getCategoryId()));
+        product.setCategory(categoryService.getCategoryById(productDTO.getCategory().getId()).get());
         product.setPrice(productDTO.getPrice());
         product.setWeight(productDTO.getWeight());
         product.setDescription(productDTO.getDescription());
@@ -95,6 +93,44 @@ public class AdminController {
 //        Map uploadRuslt = cloudinary.uploader().upload(photoFile, ObjectUtils.emptyMap());
 //        product.setImageName(uploadRuslt.get("url").toString());
         productService.updateProduct(product);
-        return "redirect:/shop";
+        return "redirect:/admin/products";
     }//form add new product > do add
+
+
+    //Products session
+    @GetMapping("/admin/products")
+    public String getPro(Model model){
+        model.addAttribute("products", productService.getAllProduct());
+        return "products";
+    }//view all products
+
+    @GetMapping("/admin/products/delete/{id}")
+    public String deletePro(@PathVariable long id){
+        productService.removeProductById(id);
+        return "redirect:/admin/products";
+    }//delete 1 product
+
+    @GetMapping("/admin/products/update/{id}")
+    public String updatePro(@PathVariable long id, Model model){
+        Optional<Product> opProduct = productService.getProductById(id);
+        if (opProduct.isPresent()){
+            Product product = opProduct.get();
+            //convert entity > dto
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.setId(product.getId());
+            productDTO.setName(product.getName());
+            productDTO.setCategoryId(product.getCategory().getId());
+            productDTO.setPrice(product.getPrice());
+            productDTO.setWeight(product.getWeight());
+            productDTO.setDescription(product.getDescription());
+            productDTO.setImageName(product.getImageName());
+
+            model.addAttribute("productDTO", productDTO);
+            model.addAttribute("categories", categoryService.getAllCategory());
+            return "addProduct";
+        }else {
+            return "404";
+        }
+
+    }//form edit product, fill old data into form
 }
